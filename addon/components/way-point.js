@@ -33,7 +33,7 @@ export default Ember.Component.extend({
   }),
 
   buildOptions: function() {
-    var options = getProperties(this, [ 'contextElementId', 'offset', 'triggerOnce', 'continuous', 'horizontal']);
+    var options = getProperties(this, [ 'contextElement', 'offset', 'triggerOnce', 'continuous', 'horizontal']);
     options.handler = bind(this, this.waypointTriggered);
 
     for (var option in options) {
@@ -42,9 +42,9 @@ export default Ember.Component.extend({
       }
     }
 
-    if (options.contextElementId) {
-      options.context = document.getElementById(options.contextElementId);
-      delete options.contextElementId;
+    if (options.contextElement) {
+      options.context = options.contextElement;
+      delete options.contextElement;
     }
 
     return options;
